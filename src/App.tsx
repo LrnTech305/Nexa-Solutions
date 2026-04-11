@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { Brain, Building2, Palette, DollarSign, ArrowLeft, Star, ChevronRight, Sparkles, LogIn, User, X } from 'lucide-react';
-import KeyNotesAI from './Components/KeyNotesAI';
-import OsasOseji from './Components/OsasOseji';
-import ArtNest from './Components/ArtNest';
-import DigitalPair from './Components/DigitalPair';
+import KeyNotesAI from './components/KeyNotesAI';
+import OsasOseji from './components/OsasOseji';
+import ArtNest from './components/ArtNest';
+import DigitalPair from './components/DigitalPair';
+import HamburgerMenu from './components/HamburgerMenu';
+import { ThemeProvider } from './context/ThemeContext';
+
 type Website = 'keynotes' | 'osas' | 'artnest' | 'digitalpair' | null;
 
 function AppContent() {
@@ -24,7 +27,6 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    // Check if user is already logged in
     const storedUser = localStorage.getItem('nexa_user');
     if (storedUser) {
       setIsLoggedIn(true);
@@ -38,7 +40,6 @@ function AppContent() {
   };
 
   const handleSocialLogin = (provider: string) => {
-    // Mock login – store a fake name
     let fakeName = '';
     if (provider === 'google') fakeName = 'Google User';
     if (provider === 'apple') fakeName = 'Apple User';
@@ -59,7 +60,6 @@ function AppContent() {
   if (activeWebsite) {
     return (
       <div>
-        {/* Back button – now on the right side */}
         <button
           onClick={() => setActiveWebsite(null)}
           className="fixed top-20 right-4 z-50 flex items-center gap-1 px-3 py-1.5 text-sm font-medium bg-white text-gray-900 rounded-full shadow-md hover:bg-gray-100 transition-all"
@@ -88,10 +88,7 @@ function AppContent() {
             <button onClick={() => scrollTo(featuredRef)} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Projects</button>
             <button onClick={() => scrollTo(reviewsRef)} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Reviews</button>
             {!isLoggedIn ? (
-              <button
-                onClick={() => setShowAuthModal(true)}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition flex items-center gap-2"
-              >
+              <button onClick={() => setShowAuthModal(true)} className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition flex items-center gap-2">
                 <LogIn className="size-4" /> Sign In
               </button>
             ) : (
@@ -99,10 +96,7 @@ function AppContent() {
                 <span className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
                   <User className="size-4" /> {userName}
                 </span>
-                <button
-                  onClick={handleLogout}
-                  className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-                >
+                <button onClick={handleLogout} className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                   Logout
                 </button>
               </div>
@@ -112,7 +106,6 @@ function AppContent() {
         </div>
       </header>
 
-      {/* Auth Modal */}
       {showAuthModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 max-w-md w-full mx-4 shadow-xl border border-gray-200 dark:border-gray-700">
@@ -123,24 +116,15 @@ function AppContent() {
               </button>
             </div>
             <div className="space-y-4">
-              <button
-                onClick={() => handleSocialLogin('google')}
-                className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition"
-              >
+              <button onClick={() => handleSocialLogin('google')} className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition">
                 <img src="https://www.google.com/favicon.ico" alt="Google" className="size-5" />
                 Continue with Google
               </button>
-              <button
-                onClick={() => handleSocialLogin('apple')}
-                className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition"
-              >
+              <button onClick={() => handleSocialLogin('apple')} className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition">
                 <span className="text-xl">🍎</span>
                 Continue with Apple
               </button>
-              <button
-                onClick={() => handleSocialLogin('microsoft')}
-                className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition"
-              >
+              <button onClick={() => handleSocialLogin('microsoft')} className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition">
                 <span className="text-xl">🪟</span>
                 Continue with Microsoft
               </button>
@@ -152,7 +136,6 @@ function AppContent() {
         </div>
       )}
 
-      {/* Hero Section (unchanged) */}
       <section className="relative">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-black dark:to-gray-900 -z-10" />
         <div className="max-w-7xl mx-auto px-6 py-24 md:py-32">
@@ -182,7 +165,6 @@ function AppContent() {
         </div>
       </section>
 
-      {/* Services, Featured Project, Reviews, Footer – same as before */}
       <section ref={servicesRef} className="py-24 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
