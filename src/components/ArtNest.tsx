@@ -19,6 +19,7 @@ export default function ArtNest() {
     { icon: Sparkles, title: "Brand Design", description: "Memorable brand identities that stand out", features: ["Logo Design", "Color Systems", "Typography", "Design Systems"] }
   ];
 
+  const scrollToWork = () => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
   const scrollToContact = () => document.getElementById('contact-footer')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
@@ -32,7 +33,7 @@ export default function ArtNest() {
             <a href="#services" className="hover:text-emerald-400 transition">Services</a>
             <a href="#process" className="hover:text-emerald-400 transition">Process</a>
             <button onClick={scrollToContact} className="hover:text-emerald-400 transition">Contact</button>
-            <button className="px-5 py-2 rounded-lg bg-emerald-500 text-black hover:bg-emerald-400 transition">Start Project</button>
+            <a href="mailto:nkananglawrence@gmail.com?subject=Project Inquiry" className="px-5 py-2 rounded-lg bg-emerald-500 text-black hover:bg-emerald-400 transition">Start Project</a>
           </nav>
           <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
@@ -44,7 +45,7 @@ export default function ArtNest() {
             <a href="#services" className="hover:text-emerald-400">Services</a>
             <a href="#process" className="hover:text-emerald-400">Process</a>
             <button onClick={scrollToContact} className="text-left hover:text-emerald-400">Contact</button>
-            <button className="px-5 py-2 rounded-lg bg-emerald-500 text-black">Start Project</button>
+            <a href="mailto:nkananglawrence@gmail.com?subject=Project Inquiry" className="px-5 py-2 rounded-lg bg-emerald-500 text-black text-center">Start Project</a>
           </div>
         )}
       </header>
@@ -58,7 +59,10 @@ export default function ArtNest() {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-400/10 border border-emerald-400/20 rounded-full mb-8"><span className="size-2 bg-emerald-400 rounded-full animate-pulse" /><span className="text-sm text-emerald-400">Available for new projects</span></div>
             <h1 className="text-8xl mb-8 leading-tight">Design that<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-purple-400">drives results</span></h1>
             <p className="text-2xl text-gray-400 mb-12 max-w-2xl">We craft exceptional digital experiences through thoughtful UI/UX design and modern web development.</p>
-            <div className="flex items-center gap-4"><button className="px-8 py-4 bg-emerald-400 text-black rounded-full hover:bg-emerald-300 transition-all flex items-center gap-2 group">View Our Work<ArrowRight className="size-5 group-hover:translate-x-1 transition-transform" /></button><button className="px-8 py-4 border border-white/20 rounded-full hover:bg-white/5 transition-colors">Get In Touch</button></div>
+            <div className="flex items-center gap-4">
+              <button onClick={scrollToWork} className="px-8 py-4 bg-emerald-400 text-black rounded-full hover:bg-emerald-300 transition-all flex items-center gap-2 group">View Our Work<ArrowRight className="size-5 group-hover:translate-x-1 transition-transform" /></button>
+              <button onClick={scrollToContact} className="px-8 py-4 border border-white/20 rounded-full hover:bg-white/5 transition-colors">Get In Touch</button>
+            </div>
           </div>
         </div>
       </section>
@@ -99,17 +103,33 @@ export default function ArtNest() {
         ))}</div></div>
       </section>
 
-      {/* CTA */}
-      <section id="contact" className="py-32 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-4xl mx-auto px-6 text-center"><h2 className="text-7xl mb-6">Let's create something<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-purple-400">extraordinary</span></h2><p className="text-xl text-gray-400 mb-12">Ready to elevate your digital presence? Let's discuss your project.</p>
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm"><form className="space-y-6"><div className="grid md:grid-cols-2 gap-6"><input type="text" placeholder="Your Name" className="px-6 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-emerald-400 transition-colors" /><input type="email" placeholder="Your Email" className="px-6 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-emerald-400 transition-colors" /></div><textarea placeholder="Tell us about your project..." rows={5} className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-emerald-400 transition-colors resize-none" /><button type="submit" className="w-full px-8 py-4 bg-emerald-400 text-black rounded-xl hover:bg-emerald-300 transition-colors flex items-center justify-center gap-2"><Mail className="size-5" />Send Message</button></form></div></div>
+      {/* Why Choose Us (replaces old large form) */}
+      <section className="py-32 bg-gradient-to-b from-gray-900 to-black">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-6xl text-center mb-16">Why Choose ArtNest?</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { title: "Experienced Team", desc: "5+ years of design & development", img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&q=80" },
+              { title: "Client-Centric", desc: "We listen, iterate, deliver", img: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&q=80" },
+              { title: "Results Driven", desc: "40% avg conversion uplift", img: "https://images.unsplash.com/photo-1551434678-e076c2235a32?w=400&q=80" }
+            ].map((item, i) => (
+              <div key={i} className="bg-gray-800/50 rounded-2xl overflow-hidden">
+                <img src={item.img} alt={item.title} className="w-full h-48 object-cover" />
+                <div className="p-6">
+                  <h3 className="text-2xl mb-2">{item.title}</h3>
+                  <p className="text-gray-400">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer with contact form */}
       <footer id="contact-footer" className="border-t border-gray-800 py-12 mt-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12">
-            <div><div className="text-2xl font-bold mb-4">Art<span className="text-emerald-400">Nest</span></div><p className="text-gray-400 mb-6">UI/UX design and web development.</p><div className="space-y-3 text-gray-400"><div className="flex gap-3"><Mail /> hello@artnest.com</div><div className="flex gap-3"><Phone /> +1 (555) 456-7890</div><div className="flex gap-3"><MapPin /> London, UK</div></div></div>
+            <div><div className="text-2xl font-bold mb-4">Art<span className="text-emerald-400">Nest</span></div><p className="text-gray-400 mb-6">UI/UX design and web development.</p><div className="space-y-3 text-gray-400"><div className="flex gap-3"><Mail /> nkananglawrence@gmail.com</div><div className="flex gap-3"><Phone /> +2348076469279</div><div className="flex gap-3"><MapPin /> Abuja, Nigeria</div></div></div>
             <div><h3 className="text-xl mb-4">Send us a message</h3><form className="space-y-4" onSubmit={(e) => e.preventDefault()}><input type="text" placeholder="Your name" className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white" /><input type="email" placeholder="Your email" className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white" /><textarea rows={3} placeholder="Message" className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white resize-none"></textarea><button type="submit" className="px-6 py-2 bg-emerald-500 text-black rounded-lg hover:bg-emerald-400">Send Message</button></form></div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm"><div className="mb-2">Nexa<span className="text-emerald-400">Solutions</span> — All rights reserved © 2026</div><button onClick={() => window.dispatchEvent(new CustomEvent('reset-portfolio'))} className="text-emerald-400 hover:text-emerald-300">← Back to all projects</button></div>

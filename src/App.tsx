@@ -120,15 +120,15 @@ function AppContent() {
               </div>
               <div className="space-y-4">
                 <button onClick={() => handleSocialLogin('google')} className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition">
-                  <img src="https://www.google.com/favicon.ico" alt="Google" className="size-5" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" className="size-5" />
                   Continue with Google
                 </button>
                 <button onClick={() => handleSocialLogin('apple')} className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition">
-                  <span className="text-xl">🍎</span>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" className="size-5 dark:invert" />
                   Continue with Apple
                 </button>
                 <button onClick={() => handleSocialLogin('microsoft')} className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition">
-                  <span className="text-xl">🪟</span>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" className="size-5" />
                   Continue with Microsoft
                 </button>
               </div>
