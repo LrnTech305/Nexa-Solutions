@@ -1,12 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { Brain, Building2, Palette, DollarSign, ArrowLeft, Star, ChevronRight, Sparkles, LogIn, User, X } from 'lucide-react';
-import KeyNotesAI from './components/KeyNotesAI';
-import OsasOseji from './components/OsasOseji';
-import ArtNest from './components/ArtNest';
-import DigitalPair from './components/DigitalPair';
-import HamburgerMenu from './components/HamburgerMenu';
-import { ThemeProvider } from './context/ThemeContext';
-
+import KeyNotesAI from './Components/KeyNotesAI';
+import OsasOseji from './Components/OsasOseji';
+import ArtNest from './Components/ArtNest';
+import DigitalPair from './Components/DigitalPair';
 type Website = 'keynotes' | 'osas' | 'artnest' | 'digitalpair' | null;
 
 function AppContent() {
