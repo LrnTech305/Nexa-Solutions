@@ -7,6 +7,7 @@ import DigitalPair from './components/DigitalPair';
 import HamburgerMenu from './components/HamburgerMenu';
 import { ThemeProvider } from './context/ThemeContext';
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 type Website = 'keynotes' | 'osas' | 'artnest' | 'digitalpair' | null;
 
@@ -79,6 +80,7 @@ function AppContent() {
 
   return (
     <>
+      <Analytics />
       <SpeedInsights />
       <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">
         <header className="sticky top-0 z-40 bg-white/95 dark:bg-black/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
